@@ -77,11 +77,31 @@ def power_iteration(A, err_adm=0.1, max_iter=1000):
     return w, lmbd
 
 
-def inverse_iteration(A):
-    # DOCUMENTAR FUNCIÓN
-    # Establecer como parámetro opcional la cantidad máxima de iteraciones y el error admisible
+def inverse_iteration(A, err_adm=0.1, max_iter=1000):
+    """Método de iteración inversa para el cálculo del eigenpar menor
+    De Chapra "Métodos Numéricos para Ingenieros", página 812.
 
-    # Lanzar error si la matriz A recibida no es cuadrada
+    Parameters
+    ----------
+    A : 2-D array
+        Matriz A de la que se desea obtener el eigenpar. Dicha matriz debe ser cuadrada.
+    max_iter : int, optional
+        Máximo número de iteraciones antes de que el método finalice
+        si no encontró un eigenpar con un error menor al admisible.
+    err_adm : float, optional
+        Máximo error porcentual admisible (entre o y 100%).
+
+    Returns
+    -------
+    float64, 1-D array
+        un float con el mayor eigenvalor de la matriz A y un 1-D array con el eigenvector aociado
+    """
+
+    # TODO: 
+    #   - Establecer como parámetro opcional la cantidad máxima de iteraciones y el error admisible
+    #   - Lanzar error si la matriz A recibida no es cuadrada
+
+    err_adm = err_adm / 100 # Normalización del error a rango 0-1
 
     N = A.shape[0]
 
@@ -96,7 +116,7 @@ def inverse_iteration(A):
         newLmbd = (1/newWmax) * newLmbd
         err = abs((newWmax - w)/newWmax)
         # print(err)
-        if (err < 0.001 or i > 1000):
+        if (err < err_adm or i > max_iter):
             lmbd = newLmbd
             w = newWmax
             # print("Error: " + str(err) + " - Iteración: " + str(i)) # Informe como parámetro opcional?
