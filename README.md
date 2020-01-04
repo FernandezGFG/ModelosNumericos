@@ -51,7 +51,7 @@ w, lmbd = power_iteration(A, err_adm=0.1, max_iter=1000)
 *Falta documentar*
 ```python
 # project/eigen.py
-w, lmbd = inverse_iteration(A)
+w, lmbd = inverse_iteration(A, err_adm=0.1, max_iter=1000)
 ```
 
 **NOTA**: Para comprender mejor el uso de los métodos anteriores recurrir a la documentación del código.
